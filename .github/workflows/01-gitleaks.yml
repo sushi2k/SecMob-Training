@@ -29,7 +29,7 @@
 #     # Upload the SARIF file to Github, so the findings show up in "Security / Code Scanning alerts"
 #     - name: Upload gitleaks report
 #       if: always()
-#       uses: github/codeql-action/upload-sarif@v1
+#       uses: github/codeql-action/upload-sarif@v2
 #       with:
 #         sarif_file: gitleaks.sarif
 
