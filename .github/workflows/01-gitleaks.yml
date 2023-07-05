@@ -6,6 +6,10 @@
 
 # jobs:
 #   gitleaks:
+#     permissions:
+#        id-token: write
+#        contents: read
+#        security-events: write
 #     runs-on: ubuntu-latest
 #     steps:
 #     # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
@@ -32,4 +36,5 @@
 #       uses: github/codeql-action/upload-sarif@v2
 #       with:
 #         sarif_file: gitleaks.sarif
-
+#         repo-token: ${{ secrets.GITHUB_TOKEN }}
+   
