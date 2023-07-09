@@ -36,5 +36,3 @@
 #       uses: github/codeql-action/upload-sarif@v2
 #       with:
 #         sarif_file: gitleaks.sarif
-#         repo-token: ${{ secrets.GITHUB_TOKEN }}
-   
