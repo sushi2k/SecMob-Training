@@ -1,9 +1,13 @@
-#name: Dependency Check
-#
-#on: [push,pull_request]
-#
-#jobs:
+# name: Dependency Check
+
+# on: [push,pull_request]
+
+# jobs:
 #  depchecktest:
+#    permissions:
+#        id-token: write
+#        contents: read
+#        security-events: write
 #    runs-on: ubuntu-latest
 #    name: depecheck_test
 #    steps:
@@ -40,6 +44,6 @@
 #      # Upload the SARIF file to Github, so the findings show up in "Security / Code Scanning alerts"
 #      - name: Upload Dependency Check report to CodeQL
 #        if: always()
-#        uses: github/codeql-action/upload-sarif@v1
+#        uses: github/codeql-action/upload-sarif@v2
 #        with:
 #          sarif_file: ${{github.workspace}}/reports/dependency-check-report.sarif
