@@ -1,4 +1,4 @@
-# name: MobSF Scan
+# name: Generic MobSF Scan
 
 # on: [push,pull_request]
 
