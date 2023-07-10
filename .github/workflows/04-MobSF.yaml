@@ -1,4 +1,4 @@
-# name: Generic MobSF Scan
+# name: Generic MobSF Scan (Docker)
 
 # on: [push,pull_request]
 
