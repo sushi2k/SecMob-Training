@@ -1,49 +1,32 @@
-# name: MobSF_Generic_Scan
+# # Documentation for Workflow Syntax: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
+# # The name of the GitHub event that triggers the workflow.
+# name: mobsfscan
 
-# on: [push,pull_request]
-
+# on:
+#   push:
+#     branches: [ master, main ]
+#   pull_request:
+#     branches: [ master, main ]
 # jobs:
-#   build:
+#   # Name of Job
+#   mobsfscan:
 #     permissions:
 #        id-token: write
 #        contents: read
 #        security-events: write
 #     runs-on: ubuntu-latest
+#     name: mobsfscan code scanning
 #     steps:
-#       - name: Checkout Repo
-#         uses: actions/checkout@master
-
-#       - name: Fix Permissions for MobSF Docker
-#         run: |
-#           sudo mkdir -p /home/runner/work/_temp/_github_home
-#           sudo chown -R 9901:9901 /home/runner/work/_temp/_github_home
-#           sudo mkdir -p /home/runner/work/$REPO_NAME/$REPO_NAME
-#           sudo chown -R 9901:9901 /home/runner/work/$REPO_NAME/$REPO_NAME
-#         env:
-#           REPO_NAME: ${{ github.event.repository.name }}
-
-#       - name: Run MobSF Analysis
-#         uses: fundacaocerti/mobsf-action@v1.7.1
-#         env:
-#           INPUT_FILE_NAME: Find_my_Data.ipa
-#           SCAN_TYPE: ipa
-#           OUTPUT_FILE_NAME: mobsf-report
-
-#       - name: Cleanup MobSF Permissions
-#         run: |
-#           sudo chown -R runner:docker /home/runner/work/_temp/_github_home
-#           sudo chown -R runner:docker /home/runner/work/$REPO_NAME/$REPO_NAME
-#         env:
-#           REPO_NAME: ${{ github.event.repository.name }}
-
-#       - name: Upload MobSF Analysis PDF Result
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: mobsf-report.pdf
-#           path: mobsf-report.pdf
-
-#       - name: Upload MobSF Analysis JSON Result
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: mobsf-report.json
-#           path: mobsf-report.json
+#     # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+#     - name: Checkout the code
+#       uses: actions/checkout@v2
+#     # Execute the MobSF scan and create a SARIF file
+#     - name: mobsfscan
+#       uses: MobSF/mobsfscan@main
+#       with:
+#         args: '. --sarif --output results.sarif || true'
+#     # Upload the SARIF file to Github, so the findings show up in "Security / Code Scanning alerts"
+#     - name: Upload mobsfscan report
+#       uses: github/codeql-action/upload-sarif@v2
+#       with:
+#         sarif_file: results.sarif
