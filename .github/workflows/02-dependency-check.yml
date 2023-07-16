@@ -23,9 +23,9 @@
 #            project: 'test'
 #            path: '.'
 #            format: 'SARIF'
-# #          args: >
-# #            --enableExperimental
-# #            --scan Podfile.lock
+#          args: >
+#            --enableExperimental
+#            --scan Podfile.lock
 #       - name: Depcheck - HTML
 #         uses: dependency-check/Dependency-Check_Action@main
 #         id: Depcheck-HTML
@@ -33,9 +33,9 @@
 #           project: 'test'
 #           path: '.'
 #           format: 'HTML'
-# #          args: >
-# #            --enableExperimental
-# #            --scan Podfile.lock
+#          args: >
+#            --enableExperimental
+#            --scan Podfile.lock
 #       - name: Upload Test results
 #         uses: actions/upload-artifact@master
 #         with:
