@@ -4,28 +4,29 @@ on: [push,pull_request]
 
 jobs:
   depchecktest:
+    runs-on: ubuntu-latest
+    name: depeendency-check
     permissions:
        id-token: write
        contents: read
        security-events: write
-    runs-on: ubuntu-latest
-    name: dependency_check_test
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      # - name: List files in the workspace
-      #   run: |
-      #     ls ${{ github.workspace }}
+        uses: actions/checkout@v3
+      - name: List files in the workspace
+        run: |
+          ls ${{ github.workspace }}
       - name: Depcheck - SARIF
         uses: dependency-check/Dependency-Check_Action@main
-        id: Depcheck
+        id: Depcheck-SARIF
         with:
-           project: 'test'
-           path: '.'
-           format: 'SARIF'
-         args: >
-           --enableExperimental
-           --scan Podfile.lock
+          project: 'test'
+          path: '.'
+          format: 'SARIF'
+          out: 'reports' # this is the default, no need to specify unless you wish to override it
+          args: >
+            --enableExperimental
+            --scan Podfile.lock
       - name: Depcheck - HTML
         uses: dependency-check/Dependency-Check_Action@main
         id: Depcheck-HTML
@@ -33,9 +34,10 @@ jobs:
           project: 'test'
           path: '.'
           format: 'HTML'
-         args: >
-           --enableExperimental
-           --scan Podfile.lock
+          out: 'reports' # this is the default, no need to specify unless you wish to override it
+          args: >
+            --enableExperimental
+            --scan Podfile.lock
       - name: Upload Test results
         uses: actions/upload-artifact@master
         with:
