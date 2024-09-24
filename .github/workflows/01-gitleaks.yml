@@ -1,3 +1,4 @@
+
 # # Documentation for Workflow Syntax: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
 # # The name of the GitHub event that triggers the workflow.
 # name: Gitleaks
@@ -13,7 +14,7 @@
 #     runs-on: ubuntu-latest
 #     steps:
 #     # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
-#     - uses: actions/checkout@v1
+#     - uses: actions/checkout@v3
 #     # Gitleaks version from https://github.com/sushi2k/gitleaks-action that allows to store the output as SARIF file
 #     - name: customized gitleaks
 #       uses: sushi2k/gitleaks-action@extra-args
@@ -25,7 +26,7 @@
 #       run: |
 #         ls ${{ github.workspace }}
 #     # Upload the SARIF file to the Github action as output
-#     - uses: actions/upload-artifact@v2
+#     - uses: actions/upload-artifact@v3
 #       if: always()
 #       with:
 #         name: gitleaks
