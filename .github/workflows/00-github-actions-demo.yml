@@ -1,21 +1,21 @@
 
-# Documentation for Workflow Syntax: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
-# The name of the GitHub event that triggers the workflow.
+# # Documentation for Workflow Syntax: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
+# # The name of the GitHub event that triggers the workflow.
 
-name: gitleaks
-on:
-  pull_request:
-  push:
+# name: gitleaks
+# on:
+#   pull_request:
+#   push:
   
-jobs:
-  scan:
-    name: gitleaks
-    runs-on: ubuntu-latest
-    steps:
-    # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0    
-    - uses: gitleaks/gitleaks-action@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# jobs:
+#   scan:
+#     name: gitleaks
+#     runs-on: ubuntu-latest
+#     steps:
+#     # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+#     - uses: actions/checkout@v4
+#       with:
+#         fetch-depth: 0    
+#     - uses: gitleaks/gitleaks-action@v2
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
